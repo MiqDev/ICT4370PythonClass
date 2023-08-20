@@ -172,7 +172,7 @@ class GetStockData:
         return self.dateList, self.stockValuelist
 
     def get_data_into_df(self,stock_list):
-        """ query database and create lists for a stock symbol """
+        """ query database and load data into a dataframe """
 
         db_conn = sqlite3.connect(self.databaseName)
         db_cursor = db_conn.cursor()
@@ -189,10 +189,12 @@ class GetStockData:
             order by 2,1
         """
 
-        # print(sql_qry_final)
+        # execute the query and get a list of columns from query output
         sqlExecute = db_cursor.execute(sql_qry_final)
         cols = [column[0] for column in sqlExecute.description]
         sqlResults = sqlExecute.fetchall()
+
+        # store the results of the query into a dataframe
         qry_df = pd.DataFrame.from_records(data=sqlResults,columns=cols)
         db_conn.commit()
         db_conn.close()

@@ -1,6 +1,6 @@
 """
     Author: Miquel Rael
-    Date: 8/6/2023
+    Date: 8/19/2023
     Purpose:
         get data from json file, load into a database, and pull data from database and plot
         in a time series line graph showing the stock value for stocks over time.
@@ -11,8 +11,6 @@ import csv
 import portfolios
 from datetime import datetime
 import matplotlib.pyplot as plt
-import matplotlib
-import pandas as pd
 
 # define file names
 database_name = 'stocks.db'
